@@ -1,0 +1,10 @@
+*.pyc
+
+# Test data from Partychat
+ppblog
+
+# Logs of tweets that have been processed already
+logs/
+
+# Generated otuput
+out/

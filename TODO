@@ -1,0 +1,162 @@
+M4:
+- random target/user link
+- support pre-increment
+- use border for hover underline in title since it's too thick on windows/linux
+- require at least one ascii character in target names (to handle mosh's 
+  message)
+- faq
+- me too links
+- feedback link on every page
+- auto-linkify non-http URLs like erica's www.bofa.mobi
+- user icon on target -> user links and score rounded corners + colors on 
+  user -> target links
+- escape <'s in target names and/or ignore messages like 
+  http://twitter.com/todesking/statuses/89832842
+
+DONE:
+- better parsing when skipping over standalone signs (e.g. in
+  http://twitter.com/beergeek/statuses/78512872)
+- detect when targets are usernames (and vice-versa) and display accordingly
+- unicode support in reasons
+- unicode support in target names
+- feedback link
+- every N (20?) refreshes don't use a since parameter to catch out of order
+  messages
+- normalize target names (e.g. / to -) when picking the target name, not
+  when deciding on the file name
+- spaces in target names via parentheses
+- blacklist C++, etc.
+- op-crowding
+- better feed item IDs for ops that come from the same message
+- don't crowd ops for just two
+- limit feed to 20 items too
+- link rel="alternate" type="text/html" for feeds
+- more explicit (both ++ and --) examples on front page (on their own lines) 
+- rss feed for clique actions
+- nofollow URLs
+- on hover show the entire original message
+- store checkpoint as epoch timestamps and format it for the since parameter
+- plusplusbot shouldn't have both boosters and detractors when it's at 10 people
+- limit caching to 60 seconds
+- investigate why kushal has no friends
+- see why krave doesn't show up in dbentley's friends list
+- move username/pass to command line arguments
+- plusplus-ing from hompage
+- re-use stale cache data for object cache
+
+M5:
+- target autocomplete for form
+- op frequency chart on per user and per target pages for last 24 hours/week/
+  30 days
+- on target page, have ++/-- minus buttons that generate a pre-filled direct 
+  message to plusplusbot
+- send public update with fast risers/fallers
+- rate limiting (same user/target pair over a 5 minute span)
+- live scroller on homepage
+- Analytics tracking
+- move all paths to command line arguments
+- use op recency as tie-breaker when sorting scores
+- handle <, >, (, ), [, ], *this, it's in target names (bad when uploading 
+  because of shell escaping)
+- truncate long target names like mark_bittman_10_minute_pancakes (and move to 
+  tooltip)
+- starring of favorite ++'s and --'s
+- better favicon
+- add json(p) support for front page, target, user
+- support alternate t9 friendly syntax for direct messages like 
+  "dtussey minus for foo bar"
+- generate most active today chart
+
+-------------------------------------------------------------------------------
+M0:
+- log received friends timeline and direct messages
+- on startup re-read log
+- manually add dolapo's and my logs
+- import partychat logs for seed data
+- guard against processing the same message twice
+- compute target scores
+- generate top 10/bottom 10 chart
+- templates:
+  http://davidbau.com/archives/2007/02/18/python_templates.html
+  http://davidbau.com/archives/2007/03/11/python_string_functions.html
+- scp to plusplusbot.com
+- log created_at checkpoint and use that for since
+
+M1:
+- show recent ops on landing page
+- anonymize direct messages
+- log bad JSON responses
+- use dan's twitter account when loading partychat logs
+- handle bad JSON responses that trigger exceptions
+- fix relative dates
+- add last updated timestamp to landing page
+- generate per-target page with:
+  - reasons
+  - recent activity
+  - top users (for both ++ and --)
+- add .htaccess saying the default mime type is text/html
+- generate per-user page:
+  - top targets (negative and positive)
+  - recent activity
+- relative timestamps for debug messages
+- basic howto on landing page
+- why is "test" (with +22) not in the top of most adored?
+- make direct messages not anonymous unless they start with !
+- scp only update_set
+
+M2:
+- sleep for 60 - iteration_time
+- don't link to direct messages in timestamp
+- send confirmation/update direct message after processing op
+- shrinking text in IE
+- icon for user (in both page title and links) to help differentiate from targets
+- cache profile image urls and use them
+- faster uploads (use single scp command per directory)
+- better formatting for per target page
+- make front page line up better (like target page)
+- make user pages line up better
+- trim confirmation direct message (don't include reason)
+- redirect from www.plusplusbot.com to plusplusbot.com
+- real logo
+- replace "--" and "++" in ack with "minusminus" and "plusplus"
+- use measure map style big font sentence headers:
+  - dolapo has ++'ed NN times, --'ed NN times, about NN things
+  - google has been ++'ed by NN people, --'ed by NN people, for a total score of
+    N
+- anonymous ops are still counted on user pages
+- icon for anymous usage
+- add total op and distinct user count to landing page
+- flags for no upload/run once/no twitter data
+- faster recovery with no_rebuild flag
+- no top boosters for < 5 messages in activity
+- handle standalone use of -- and ++ in a message (don't generate op)
+- title not lining up in Firefox/Windows
+
+M3:
+- handle httplib.BadStatusLine exception
+- get friends for users (with 1 day cache) and generate "with friends" section 
+  on user page
+- auto-link URLs
+- link from "with friends" section to the user's friends (just icons?)
+- add atom feeds for front page, target, user
+- validate response is valid JSON before caching it
+- better layout for "with friends"/"clique mode" section
+- move homepage recent activity above least/most columns
+- favicon
+- fix newlines in messages like dbentleys
+- maintain local copies of .htaccess and robots.txt
+- better wording for clique mode: "ak and their 4 friends (icons) have ++'ed..."
+- tooltips on user links with full name
+- if not enough users for both top boosters and detractors, switch to detractors 
+  if no user ++'ed
+- add 15 second timeout to all HTTP requests
+- add a third table on homepage (top users)
+- remove partychat data
+- disable directory listings
+
+curl -u plusplusbot:robote1 http://twitter.com/direct_messages.json?since=Tue%2C+26+Jun+2007+00%3A37%3A51+GMT
+curl -u plusplusbot:robote1 http://twitter.com/statuses/friends_timeline.xml?since=Tue%2C+26+Jun+2007+03%3A14%3A36+GMT
+curl -u plusplusbot:robote1 http://twitter.com/users/show/10644.xml
+curl -u plusplusbot:robote1 http://twitter.com/statuses/friends/696333.xml
+
+curl -u plusplusbot:robote1 http://twitter.com/statuses/show/4200382.json
